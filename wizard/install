@@ -1,0 +1,44 @@
+[
+  {
+    "stepTitle": "运行方式",
+    "items": [
+      {
+        "type": "tips",
+        "helpText": "当前版本为<b>模拟盘</b>：读取真实行情，但下单只记在本地纸面账户。<br>开启「自主交易」后，智能体在置信度达标时会自动在模拟盘建仓/平仓。"
+      },
+      {
+        "type": "text",
+        "field": "wizard_proxy_url",
+        "label": "行情代理（可选，如 http://127.0.0.1:7890）",
+        "initValue": "",
+        "rules": [{ "pattern": "^(https?://.+)?$", "message": "请填写 http:// 开头的代理地址" }]
+      },
+      {
+        "type": "switch",
+        "field": "wizard_auto",
+        "label": "开启自主交易（模拟盘）",
+        "initValue": "false"
+      },
+      {
+        "type": "text",
+        "field": "wizard_confidence",
+        "label": "自主交易最低置信度（%）",
+        "initValue": "55",
+        "rules": [{ "pattern": "^[0-9]+$", "message": "请输入 0-100 的整数" }]
+      }
+    ]
+  },
+  {
+    "stepTitle": "模拟资金",
+    "items": [
+      {
+        "type": "text", "field": "wizard_cash_crypto", "label": "数字货币初始资金（USDT）", "initValue": "10000",
+        "rules": [{ "pattern": "^[0-9]+(\\.[0-9]+)?$", "message": "请输入数字" }]
+      },
+      {
+        "type": "text", "field": "wizard_cash_ashare", "label": "A 股初始资金（元）", "initValue": "100000",
+        "rules": [{ "pattern": "^[0-9]+(\\.[0-9]+)?$", "message": "请输入数字" }]
+      }
+    ]
+  }
+]

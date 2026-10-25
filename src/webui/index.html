@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智能交易</title>
+<link rel="stylesheet" href="app.css?v={{V}}">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo">A</span><div><h1>智能交易</h1><p>多智能体 · 自主模拟盘</p></div></div>
+  <div class="top-actions"><span id="status-pill" class="pill"><i></i><span>连接中…</span></span><button id="btn-kill" class="btn danger">停机</button></div>
+</header>
+<nav class="tabs">
+  <button class="tab active" data-tab="analyze">分析</button>
+  <button class="tab" data-tab="signals">信号</button>
+  <button class="tab" data-tab="portfolio">持仓</button>
+  <button class="tab" data-tab="settings">设置</button>
+  <button class="tab" data-tab="logs">日志</button>
+</nav>
+<main>
+  <section class="pane active" id="pane-analyze">
+    <section class="card">
+      <h2>发起一次分析</h2>
+      <p class="hint">技术 / 新闻 / 基本面三位分析师并行 → 多空辩论 → 交易员决策。开启「自主交易」后，达到置信度阈值会直接在模拟盘执行。</p>
+      <div class="form-row">
+        <label>市场<select id="an-venue">
+          <option value="ashare">A 股</option>
+          <option value="binance" selected>币安</option>
+          <option value="okx">OKX</option>
+          <option value="bitget">Bitget</option>
+        </select></label>
+        <label>代码 / 交易对<input id="an-code" list="an-code-list" value="BTCUSDT" placeholder="600519 或 BTCUSDT"></label>
+        <datalist id="an-code-list"></datalist>
+        <label>周期<select id="an-interval"></select></label>
+        <button id="btn-analyze" class="btn primary">运行分析</button>
+      </div>
+      <div class="form-row"><label class="grow">新闻（可选）<textarea id="an-news" rows="3" placeholder="粘贴新闻标题或公告，用于情绪分析"></textarea></label></div>
+      <div id="an-result"></div>
+    </section>
+  </section>
+  <section class="pane" id="pane-signals">
+    <section class="card">
+      <h2>信号广场</h2>
+      <p class="hint">每条决策都是一个信号。点「跟单」会按该信号的方向和仓位在当前模拟盘执行；3 根 K 线后可回测评分。</p>
+      <div class="form-row">
+        <div class="stats" id="sig-stats" style="margin:0;flex:1"></div>
+        <button id="btn-score" class="btn">回测评分</button>
+      </div>
+      <div id="sig-list"></div>
+    </section>
+  </section>
+  <section class="pane" id="pane-portfolio">
+    <section class="card"><h2>数字货币</h2><div class="stats" id="acc-crypto"></div><table class="tbl" id="pos-crypto"></table></section>
+    <section class="card"><h2>A 股</h2><div class="stats" id="acc-ashare"></div><table class="tbl" id="pos-ashare"></table></section>
+    <section class="card"><h2>成交记录</h2><table class="tbl" id="order-table"></table></section>
+  </section>
+  <section class="pane" id="pane-settings">
+    <section class="card">
+      <h2>运行与自主交易</h2>
+      <div class="form-row">
+        <label>行情代理<input id="st-proxy" placeholder="http://127.0.0.1:7890"></label>
+        <label class="switch-field"><input id="st-market-proxy" type="checkbox"><span class="track"></span><span>行情走代理</span></label>
+        <label class="switch-field"><input id="st-auto" type="checkbox"><span class="track"></span><span>自主交易</span></label>
+        <label class="switch-field"><input id="st-news-auto" type="checkbox"><span class="track"></span><span>自动抓取新闻</span></label>
+        <label class="switch-field"><input id="st-manual-trade" type="checkbox"><span class="track"></span><span>手动分析也自动下单</span></label>
+      </div>
+      <div class="form-row">
+        <div class="grow">
+          <div class="target-head">自动标的<span class="hint" style="margin:0">每行一个标的，周期与间隔按行设置；A 股支持分钟线/日线（不支持 4h）</span></div>
+          <div id="target-rows"></div>
+          <button id="btn-add-target" class="btn sm">+ 添加标的</button>
+        </div>
+        <label>新闻条数<input id="st-news-max" type="number" min="3" max="20"></label>
+        <label>最低置信度 %<input id="st-conf" type="number" min="0" max="100"></label>
+      </div>
+    </section>
+    <section class="card">
+      <div class="card-head"><h2>模型（可选）</h2><span id="llm-status" class="hint" style="margin:0"></span></div>
+      <p class="hint">默认使用 DeepSeek（deepseek-flash）。选择预设会自动填好接口地址与模型；「测试连接」用当前填写的参数直接验证，不用先保存。</p>
+      <div class="form-row">
+        <label>预设<select id="st-llm-preset">
+          <option value="deepseek-flash">deepseek-flash</option>
+          <option value="deepseek-v4-pro">deepseek-v4-pro</option>
+        </select></label>
+        <label class="switch-field"><input id="st-llm" type="checkbox"><span class="track"></span><span>启用 LLM</span></label>
+      </div>
+      <div class="form-row">
+        <label class="grow">接口地址<input id="st-llm-url" placeholder="https://api.deepseek.com"></label>
+        <label>模型<input id="st-llm-model" placeholder="deepseek-flash"></label>
+        <label>API Key<input id="st-llm-key" type="password" placeholder="留空不修改"></label>
+        <label class="switch-field"><input id="st-llm-proxy" type="checkbox"><span class="track"></span><span>走代理</span></label>
+        <button id="btn-llm-test" class="btn">测试连接</button>
+      </div>
+    </section>
+    <section class="card">
+      <h2>风控</h2>
+      <div class="form-row">
+        <label>单标的上限 %<input id="st-pos" type="number"></label>
+        <label>最大持仓数<input id="st-max" type="number"></label>
+        <label>最小下单额<input id="st-min" type="number"></label>
+      </div>
+      <div class="actions"><button id="btn-save" class="btn primary">保存设置</button></div>
+    </section>
+  </section>
+  <section class="pane" id="pane-logs"><section class="card"><h2>运行日志</h2><pre class="logs" id="logs"></pre></section></section>
+</main>
+<div id="toast" class="toast"></div>
+<script src="app.js?v={{V}}"></script>
+</body>
+</html>

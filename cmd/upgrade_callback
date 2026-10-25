@@ -1,0 +1,6 @@
+#!/bin/bash
+set -u
+APPDEST="${TRIM_APPDEST:-/var/apps/aitrader/target}"
+PKGVAR="${TRIM_PKGVAR:-/var/apps/aitrader/var}"
+"$APPDEST/bin/aitrader" -app "$APPDEST" -data "$PKGVAR" -apply-wizard >> "$PKGVAR/install.log" 2>&1
+exit 0

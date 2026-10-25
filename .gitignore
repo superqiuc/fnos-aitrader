@@ -1,0 +1,7 @@
+dist/
+.tmp/
+app/bin/
+*.fpk
+*.sha256
+__pycache__/
+*.log

@@ -1,0 +1,69 @@
+:root{--bg:#0b0f17;--card:rgba(23,31,46,.72);--border:rgba(148,163,184,.16);--text:#e5eaf3;--muted:#8b9bb4;--ok:#34d399;--danger:#f87171;--warn:#fbbf24}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(900px 480px at 12% -8%,rgba(45,212,191,.14),transparent 62%),linear-gradient(180deg,#0b0f17,#080b12);color:var(--text);font:15px/1.55 "PingFang SC","Microsoft YaHei",system-ui,sans-serif;min-height:100vh}
+h1,h2{margin:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:22px clamp(16px,4vw,40px) 10px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;font-weight:800;font-size:22px;color:#04121a;background:linear-gradient(135deg,#2dd4bf,#7dd3fc 55%,#6366f1)}
+.brand h1{font-size:20px}.brand p{margin:2px 0 0;color:var(--muted);font-size:13px}
+.top-actions{display:flex;align-items:center;gap:10px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:rgba(17,24,39,.7);font-size:13px;color:var(--muted)}
+.pill i{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.pill.ok i{background:var(--ok);box-shadow:0 0 0 4px rgba(52,211,153,.16)}
+.pill.bad i{background:var(--danger);box-shadow:0 0 0 4px rgba(248,113,113,.16)}
+.tabs{display:flex;gap:6px;padding:6px clamp(16px,4vw,40px) 0;overflow:auto}
+.tab{padding:9px 16px;border-radius:10px;border:1px solid transparent;background:transparent;color:var(--muted);font:inherit;font-size:14px;cursor:pointer;white-space:nowrap}
+.tab.active{background:rgba(45,212,191,.12);border-color:rgba(45,212,191,.28);color:#d7fff7}
+main{max-width:1100px;margin:0 auto;padding:14px clamp(16px,4vw,40px) 40px}
+.pane{display:none}.pane.active{display:block}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:18px}
+.card h2{font-size:16px;margin-bottom:12px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:12px}
+.stat-label{font-size:12px;color:var(--muted)}.stat-value{font-size:18px;font-weight:650}
+.up{color:var(--ok)}.down{color:var(--danger)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th,.tbl td{padding:8px 10px;text-align:left;border-bottom:1px solid rgba(148,163,184,.12);vertical-align:top;word-break:break-word}
+.tbl td.reason{max-width:320px;white-space:normal}
+.tbl td.reason .clamp{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;line-height:1.5}
+.card{overflow-x:auto}
+.tbl th{color:var(--muted);font-weight:500;font-size:12px}
+.btn{padding:9px 15px;border-radius:10px;border:1px solid var(--border);background:rgba(148,163,184,.1);color:var(--text);font:inherit;font-size:13.5px;cursor:pointer}
+.btn.primary{border:none;color:#04121a;font-weight:650;background:linear-gradient(135deg,#2dd4bf,#7dd3fc)}
+.btn.danger{color:#fecaca;border-color:rgba(248,113,113,.35);background:rgba(248,113,113,.12)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.form-row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
+.form-row label{display:flex;flex-direction:column;gap:6px;font-size:13px;color:#c3cddd;min-width:140px}
+.form-row .grow{flex:1 1 320px}
+input,select,textarea{padding:9px 11px;border-radius:9px;border:1px solid var(--border);background:rgba(9,13,20,.72);color:var(--text);font:inherit;font-size:13.5px;outline:none}
+textarea{resize:vertical;font-size:13px}
+.switch-field{flex-direction:row;align-items:center;gap:9px;cursor:pointer}
+.switch-field input{position:absolute;opacity:0;width:0;height:0}
+.switch-field .track{position:relative;width:40px;height:23px;border-radius:999px;background:rgba(148,163,184,.25);flex:none}
+.switch-field .track::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#e2e8f0;transition:.18s}
+.switch-field input:checked+.track{background:linear-gradient(135deg,#2dd4bf,#6366f1)}
+.switch-field input:checked+.track::after{transform:translateX(17px);background:#04121a}
+.hint{color:var(--muted);font-size:12.5px;margin:8px 0}
+.badge{display:inline-block;padding:4px 12px;border-radius:999px;font-weight:700;font-size:14px}
+.badge.BUY{background:rgba(52,211,153,.16);color:var(--ok);border:1px solid rgba(52,211,153,.4)}
+.badge.SELL{background:rgba(248,113,113,.16);color:var(--danger);border:1px solid rgba(248,113,113,.4)}
+.badge.HOLD{background:rgba(148,163,184,.14);color:var(--muted);border:1px solid var(--border)}
+.decision{border:1px solid var(--border);border-radius:12px;padding:16px;margin-top:14px;background:rgba(9,13,20,.5)}
+.decision-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.agent{border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin:10px 0;background:rgba(17,24,39,.45)}
+.agent h3{margin:0 0 6px;font-size:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.agent ul{margin:6px 0 0;padding-left:18px;color:#c3cddd;font-size:13px}
+.debate{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.debate .agent{margin:0}
+.logs{background:rgba(5,8,13,.85);border:1px solid var(--border);border-radius:12px;padding:14px;max-height:320px;overflow:auto;font:12.5px/1.6 ui-monospace,Menlo,Consolas,monospace;color:#b9c6d8;white-space:pre-wrap}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,24px);padding:11px 18px;border-radius:12px;background:#0f172a;border:1px solid var(--border);opacity:0;pointer-events:none;transition:.2s;max-width:90vw}
+.toast.show{opacity:1;transform:translate(-50%,0)}.toast.err{border-color:rgba(248,113,113,.45);color:#fecaca}
+@media(max-width:900px){.debate{grid-template-columns:1fr}}
+
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+
+.target-head{display:flex;align-items:baseline;gap:10px;margin-bottom:8px;font-size:13px;color:#c3cddd}
+.target-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
+.target-row input.t-symbol,.target-row input.t-code{flex:1 1 180px;min-width:150px}
+.target-row select.t-venue{width:110px}
+.target-row select,.target-row input.t-hours{width:110px}
+.target-row .btn{flex:none}

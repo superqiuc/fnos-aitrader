@@ -1,0 +1,18 @@
+[
+  {
+    "stepTitle": "运行设置",
+    "items": [
+      {
+        "type": "tips",
+        "helpText": "风控参数、模型配置、标的等请到应用页面的「设置」标签页修改，保存后立即生效。"
+      },
+      {
+        "type": "text", "field": "wizard_proxy_url", "label": "行情代理（留空表示直连）", "initValue": "",
+        "rules": [{ "pattern": "^(https?://.+)?$", "message": "请填写 http:// 开头的代理地址" }]
+      },
+      {
+        "type": "switch", "field": "wizard_auto", "label": "开启自主交易（模拟盘）", "initValue": "false"
+      }
+    ]
+  }
+]

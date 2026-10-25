@@ -1,0 +1,16 @@
+appname               = aitrader
+version               = 1.1.0
+display_name          = 智能交易
+desc                  = 面向飞牛 fnOS 的多智能体智能交易应用，参考 AI-Trader 与 Vibe-Trading 的思路。<br>技术 / 新闻情绪 / 基本面三位分析师并行出报告，多空研究员辩论，交易员给出方向与目标仓位；开启「自主交易」后达到置信度阈值即在模拟盘自动执行。<br>每条决策都是一个信号，支持一键跟单、决策回测评分（命中率统计）与一键停机。<br>支持币安 / OKX / Bitget / A 股行情，内置规则推理可离线运行，配置任意 OpenAI 兼容接口后由模型参与判断。<br><b>当前版本仅模拟盘，不接真实资金，也不会向交易所发送订单。</b>
+platform              = x86
+source                = thirdparty
+maintainer            = superqiuc
+maintainer_url        = https://developer.fnnas.com/
+distributor           = superqiuc
+os_min_version        = 1.1.8
+desktop_uidir         = ui
+desktop_applaunchname = aitrader.main
+ctl_stop              = true
+service_port          = 8906
+checkport             = true
+changelog             = v1.1.0 A 股行情改用东方财富主源 + 新浪备用源，修复 HTTP 501；A 股支持 1m/5m/15m/30m/1h/1d 周期；新增「行情走代理」开关，可手动控制行情请求是否走代理。 | v1.0.0 首个公开版本：多智能体分析、信号广场、模拟盘自主交易。

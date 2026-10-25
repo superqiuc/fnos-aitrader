@@ -1,0 +1,9 @@
+#!/bin/bash
+set -u
+APPDEST="${TRIM_APPDEST:-/var/apps/aitrader/target}"
+PKGVAR="${TRIM_PKGVAR:-/var/apps/aitrader/var}"
+PID_FILE="$PKGVAR/aitrader.pid"
+was=0; [ -f "$PID_FILE" ] && pid=$(head -n1 "$PID_FILE" | tr -dc '0-9') && [ -n "$pid" ] && kill -0 "$pid" 2>/dev/null && was=1
+"$APPDEST/bin/aitrader" -app "$APPDEST" -data "$PKGVAR" -apply-wizard >> "$PKGVAR/install.log" 2>&1
+if [ "$was" = "1" ]; then "$APPDEST/cmd/main" stop >/dev/null 2>&1; "$APPDEST/cmd/main" start >/dev/null 2>&1; fi
+exit 0
